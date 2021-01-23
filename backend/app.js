@@ -1,11 +1,15 @@
 const express=require('express');
 const app=express();
-const bodyParser=require('body-parser');
-const todoModel=require('./models/todoModel')
 const cors=require('cors');
+app.use(cors());
+app.options('*', cors()); 
+const bodyParser=require('body-parser');
 app.use(express.urlencoded({extended: true}));
 app.use(bodyParser.json());
-app.use(cors());
+const todoModel=require('./models/todoModel')
+const path=require('path');
+app.use(express.static(path.join(__dirname, 'build')));
+
 const isNullOrUndefined=(data)=>data!==''&&data!==null?true:false;
 
 app.post('/addItem',async(req,res)=>{
@@ -69,5 +73,9 @@ app.put('/editItem/:taskid',async(req,res)=>{
         res.status(400).send(`${id} not found`);
     }
 })
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+  
 
 module.exports=app;

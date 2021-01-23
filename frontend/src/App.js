@@ -50,7 +50,8 @@ useEffect(()=>{
     fetch('http://localhost:9999/getItems',{
         method:'GET',
         headers:{
-            "Content-type":"application/json"
+            "Content-Type":"application/json",
+            'Accept': 'application/json'
         }
     }).then(data=>data.json()).then((arr)=> {const sortedArr = arr.sort((a, b) => {
         const aDateNumeric = new Date(a.creationTime).valueOf();
