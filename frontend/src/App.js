@@ -47,7 +47,7 @@ const deleteItem=(index)=>{
 
 useEffect(()=>{
 
-    fetch('http://localhost:9999/getItems',{
+    fetch('http://localhost:80/getItems',{
         method:'GET',
         headers:{
             "Content-Type":"application/json",
