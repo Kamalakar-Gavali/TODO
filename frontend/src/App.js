@@ -11,7 +11,7 @@ const addItem=(e)=>{
     if(item.trim()!=='')
     {
         setInputBorder('2px solid black');
-        fetch("http://localhost:9999/addItem",{
+        fetch("/addItem",{
             method:'POST',
             body:JSON.stringify({task:item}),
             headers:{"Content-Type":"application/json"}
@@ -23,7 +23,7 @@ const addItem=(e)=>{
 }
 const editItem=(index,newVal)=>{
     const idToEdit=itemList[index]._id;
-    fetch(`http://localhost:9999/editItem/${idToEdit}`,
+    fetch(`/editItem/${idToEdit}`,
         {
             method:"PUT",
             body:JSON.stringify({task:newVal}),
@@ -40,14 +40,14 @@ const deleteItem=(index)=>{
     const data= [...itemList];
     const idTodDelete=data[index]._id;
 
-    fetch(`http://localhost:9999/deleteItem/${idTodDelete}`,{
+    fetch(`/deleteItem/${idTodDelete}`,{
     method:"DELETE"}).then(res=>{data.splice(index,1);setItemList([...data])})
 
 }
 
 useEffect(()=>{
 
-    fetch('http://localhost:80/getItems',{
+    fetch('/getItems',{
         method:'GET',
         headers:{
             "Content-Type":"application/json",
