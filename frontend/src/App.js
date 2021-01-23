@@ -23,7 +23,7 @@ const addItem=(e)=>{
 }
 const editItem=(index,newVal)=>{
     const idToEdit=itemList[index]._id;
-    fetch(`http://localhost:9999/:${idToEdit}`,
+    fetch(`http://localhost:9999/editItem/${idToEdit}`,
         {
             method:"PUT",
             body:JSON.stringify({task:newVal}),
